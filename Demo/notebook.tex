@@ -1,0 +1,1127 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Demo - Attrition}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \begin{figure}
+\centering
+\includegraphics{attachment:image.png}
+\caption{image.png}
+\end{figure}
+
+    \section{Objetivos}\label{objetivos}
+
+\begin{itemize}
+\tightlist
+\item
+  Identificar los empleados con alta probabilidad de renuncia (para
+  esto, usaremos el histórico de datos para encontrar patrones)
+\item
+  Buscar insights en los datos relacionados al personal
+\item
+  Encontrar un modelo óptimo para identificar a los empleados
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{c+c1}{\PYZsh{} importar librerias }
+        \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+        \PY{k+kn}{import} \PY{n+nn}{seaborn} \PY{k}{as} \PY{n+nn}{sns}
+        \PY{n}{sns}\PY{o}{.}\PY{n}{set}\PY{p}{(}\PY{n}{style}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{whitegrid}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{c+c1}{\PYZsh{}leer el archivo de datos a analizar}
+        \PY{n}{df\PYZus{}hr} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{HR\PYZus{}comma\PYZus{}sep.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{}renombrar la columna referida a departamento, cambiar \PYZsq{}sales\PYZsq{} por \PYZsq{}departament\PYZsq{}}
+        \PY{n}{df\PYZus{}hr}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sales}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{department}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} chequear summary del dataframe}
+        \PY{n}{df\PYZus{}hr}\PY{o}{.}\PY{n}{info}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 14999 entries, 0 to 14998
+Data columns (total 10 columns):
+satisfaction\_level       14999 non-null float64
+last\_evaluation          14999 non-null float64
+number\_project           14999 non-null int64
+average\_montly\_hours     14999 non-null int64
+time\_spend\_company       14999 non-null int64
+Work\_accident            14999 non-null int64
+left                     14999 non-null int64
+promotion\_last\_5years    14999 non-null int64
+department               14999 non-null object
+salary                   14999 non-null object
+dtypes: float64(2), int64(6), object(2)
+memory usage: 1.1+ MB
+
+    \end{Verbatim}
+
+    Bien, el archivo está limpio, sin nulos, y listo para analizar
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{c+c1}{\PYZsh{}veamos las primeras filas del archivo para ver datos de ejemplo}
+        \PY{n}{df\PYZus{}hr}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}3}]:}    satisfaction\_level  last\_evaluation  number\_project  average\_montly\_hours  \textbackslash{}
+        0                0.38             0.53               2                   157   
+        1                0.80             0.86               5                   262   
+        2                0.11             0.88               7                   272   
+        3                0.72             0.87               5                   223   
+        4                0.37             0.52               2                   159   
+        
+           time\_spend\_company  Work\_accident  left  promotion\_last\_5years department  \textbackslash{}
+        0                   3              0     1                      0      sales   
+        1                   6              0     1                      0      sales   
+        2                   4              0     1                      0      sales   
+        3                   5              0     1                      0      sales   
+        4                   3              0     1                      0      sales   
+        
+           salary  
+        0     low  
+        1  medium  
+        2  medium  
+        3     low  
+        4     low  
+\end{Verbatim}
+            
+    Haremos análisis en función al campo left('se fue de la empresa', si es
+igual 1 significa que se fue, si es 0, la persona permanece en la
+empresa)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{c+c1}{\PYZsh{}veamos datos estadísticos descriptivos en forma de grilla}
+        \PY{n}{df\PYZus{}hr}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}4}]:}        satisfaction\_level  last\_evaluation  number\_project  \textbackslash{}
+        count        14999.000000     14999.000000    14999.000000   
+        mean             0.612834         0.716102        3.803054   
+        std              0.248631         0.171169        1.232592   
+        min              0.090000         0.360000        2.000000   
+        25\%              0.440000         0.560000        3.000000   
+        50\%              0.640000         0.720000        4.000000   
+        75\%              0.820000         0.870000        5.000000   
+        max              1.000000         1.000000        7.000000   
+        
+               average\_montly\_hours  time\_spend\_company  Work\_accident          left  \textbackslash{}
+        count          14999.000000        14999.000000   14999.000000  14999.000000   
+        mean             201.050337            3.498233       0.144610      0.238083   
+        std               49.943099            1.460136       0.351719      0.425924   
+        min               96.000000            2.000000       0.000000      0.000000   
+        25\%              156.000000            3.000000       0.000000      0.000000   
+        50\%              200.000000            3.000000       0.000000      0.000000   
+        75\%              245.000000            4.000000       0.000000      0.000000   
+        max              310.000000           10.000000       1.000000      1.000000   
+        
+               promotion\_last\_5years  
+        count           14999.000000  
+        mean                0.021268  
+        std                 0.144281  
+        min                 0.000000  
+        25\%                 0.000000  
+        50\%                 0.000000  
+        75\%                 0.000000  
+        max                 1.000000  
+\end{Verbatim}
+            
+    A priori, vemos algunos datos interantes en satisfacion\_level,
+last\_evaluation ypromotion\_last\_5years. Luego veremos sus curvas de
+distribución para analizarlo en profundidad.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{c+c1}{\PYZsh{} Veamos si existen relaciones, asociaciones (correlaciones lineales de Pearson) entre variables.}
+        
+        \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
+        \PY{n}{sns}\PY{o}{.}\PY{n}{heatmap}\PY{p}{(}\PY{n}{data}\PY{o}{=}\PY{n}{df\PYZus{}hr}\PY{o}{.}\PY{n}{corr}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{annot}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,}\PY{n}{cmap}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{YlGnBu}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}5}]:} <matplotlib.axes.\_subplots.AxesSubplot at 0x25532c49ba8>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Demo - Attrition_files/Demo - Attrition_9_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Ok, vemos que el nivel de satisfacción influye en la decisión de irse o
+no de la empresa. También vemos otras correlaciones para analizar número
+de proyectos (number\_project) y horas mensuales promedio
+(average\_montly \_hours)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{c+c1}{\PYZsh{}Veamos en un gráfico como se representan las distribuciones del nivel de satisfacción y el flag \PYZdq{}se fue vs no se fue\PYZdq{}}
+        
+        \PY{c+c1}{\PYZsh{}antes del gráfico, tomemos en dataframes aparte, la info de las personas que se fueron o no}
+        \PY{n}{df\PYZus{}hr\PYZus{}left} \PY{o}{=} \PY{n}{df\PYZus{}hr}\PY{p}{[}\PY{n}{df\PYZus{}hr}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{==}\PY{l+m+mi}{1}\PY{p}{]}
+        \PY{n}{df\PYZus{}hr\PYZus{}not\PYZus{}left} \PY{o}{=} \PY{n}{df\PYZus{}hr}\PY{p}{[}\PY{n}{df\PYZus{}hr}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{==}\PY{l+m+mi}{0}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{c+c1}{\PYZsh{} ahora si, veamos los gráficos de las distribuciones}
+        \PY{n}{fig}\PY{p}{,} \PY{p}{(}\PY{n}{ax1}\PY{p}{,} \PY{n}{ax2}\PY{p}{)} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{n}{nrows}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{13}\PY{p}{,}\PY{l+m+mi}{9}\PY{p}{)}\PY{p}{)}
+        \PY{n}{sns}\PY{o}{.}\PY{n}{distplot}\PY{p}{(}\PY{n}{df\PYZus{}hr}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{satisfaction\PYZus{}level}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{75}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax1}\PY{p}{)}
+        \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Distribución del nivel de satisfacción}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{n}{sns}\PY{o}{.}\PY{n}{kdeplot}\PY{p}{(}\PY{n}{df\PYZus{}hr\PYZus{}left}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{satisfaction\PYZus{}level}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{red}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax2}\PY{p}{,} \PY{n}{shade}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+        \PY{n}{sns}\PY{o}{.}\PY{n}{kdeplot}\PY{p}{(}\PY{n}{df\PYZus{}hr\PYZus{}not\PYZus{}left}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{satisfaction\PYZus{}level}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{green}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax2}\PY{p}{,} \PY{n}{shade}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+        \PY{n}{ax2}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Nivel de satisfacción: Se fue vs No se fue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{ax2}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{se fue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{no se fue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}7}]:} <matplotlib.legend.Legend at 0x25532cd4518>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Demo - Attrition_files/Demo - Attrition_12_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    ok, se ve que las clases presentan una separación - cuando el nivel de
+satisfacción es \textgreater{} 0.5, vemos que menos gente se va - por
+otro lado, el pico máximo de las personas que se fueron, tuvieron un
+nivel de satisfacción alrededor de 0.4 de satisfacción.
+
+Datos interesantes a tener en cuenta para seguir el análisis.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{c+c1}{\PYZsh{}veamos las variables a lo largo de todos los departamentos}
+        \PY{n}{department}\PY{o}{=}\PY{n}{df\PYZus{}hr}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{department}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}
+        \PY{n}{department}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}8}]:}              satisfaction\_level  last\_evaluation  number\_project  \textbackslash{}
+        department                                                         
+        IT                     0.618142         0.716830        3.816626   
+        RandD                  0.619822         0.712122        3.853875   
+        accounting             0.582151         0.717718        3.825293   
+        hr                     0.598809         0.708850        3.654939   
+        management             0.621349         0.724000        3.860317   
+        marketing              0.618601         0.715886        3.687646   
+        product\_mng            0.619634         0.714756        3.807095   
+        sales                  0.614447         0.709717        3.776329   
+        support                0.618300         0.723109        3.803948   
+        technical              0.607897         0.721099        3.877941   
+        
+                     average\_montly\_hours  time\_spend\_company  Work\_accident  \textbackslash{}
+        department                                                             
+        IT                     202.215974            3.468623       0.133659   
+        RandD                  200.800508            3.367217       0.170267   
+        accounting             201.162973            3.522816       0.125163   
+        hr                     198.684709            3.355886       0.120433   
+        management             201.249206            4.303175       0.163492   
+        marketing              199.385781            3.569930       0.160839   
+        product\_mng            199.965632            3.475610       0.146341   
+        sales                  200.911353            3.534058       0.141787   
+        support                200.758188            3.393001       0.154778   
+        technical              202.497426            3.411397       0.140074   
+        
+                         left  promotion\_last\_5years  
+        department                                    
+        IT           0.222494               0.002445  
+        RandD        0.153748               0.034307  
+        accounting   0.265971               0.018253  
+        hr           0.290934               0.020298  
+        management   0.144444               0.109524  
+        marketing    0.236597               0.050117  
+        product\_mng  0.219512               0.000000  
+        sales        0.244928               0.024155  
+        support      0.248991               0.008973  
+        technical    0.256250               0.010294  
+\end{Verbatim}
+            
+    \subsection{Analicemos en particular las personas que se
+fueron}\label{analicemos-en-particular-las-personas-que-se-fueron}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{df\PYZus{}hr\PYZus{}left}\PY{o}{.}\PY{n}{info}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+<class 'pandas.core.frame.DataFrame'>
+Int64Index: 3571 entries, 0 to 14998
+Data columns (total 10 columns):
+satisfaction\_level       3571 non-null float64
+last\_evaluation          3571 non-null float64
+number\_project           3571 non-null int64
+average\_montly\_hours     3571 non-null int64
+time\_spend\_company       3571 non-null int64
+Work\_accident            3571 non-null int64
+left                     3571 non-null int64
+promotion\_last\_5years    3571 non-null int64
+department               3571 non-null object
+salary                   3571 non-null object
+dtypes: float64(2), int64(6), object(2)
+memory usage: 306.9+ KB
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{c+c1}{\PYZsh{}veamos la matriz de correlación solo de las personas que se fueron}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
+         \PY{n}{sns}\PY{o}{.}\PY{n}{heatmap}\PY{p}{(}\PY{n}{data}\PY{o}{=}\PY{n}{df\PYZus{}hr\PYZus{}left}\PY{p}{[}\PY{n}{df\PYZus{}hr\PYZus{}left}\PY{o}{.}\PY{n}{columns}\PY{o}{.}\PY{n}{difference}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{]}\PY{o}{.}\PY{n}{corr}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{pearson}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{,} \PY{n}{annot}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,}\PY{n}{cmap}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{YlGnBu}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}10}]:} <matplotlib.axes.\_subplots.AxesSubplot at 0x2553301ca20>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Demo - Attrition_files/Demo - Attrition_17_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    ok, vemos asociaciones interesantes: promedio\_horas\_mensuales y ultima
+evaluacion/numero\_de\_proyectos tienen una relacion muy fuerte
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{c+c1}{\PYZsh{}continuemos analizando la gente que se fue y sus características.}
+         
+         \PY{c+c1}{\PYZsh{}Comencemos viendo la distribución de última evaluacion.}
+         \PY{n}{ax} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{kdeplot}\PY{p}{(}\PY{n}{df\PYZus{}hr\PYZus{}left}\PY{o}{.}\PY{n}{last\PYZus{}evaluation}\PY{p}{,} \PY{n}{shade}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{r}\PY{l+s+s2}{\PYZdq{}} \PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Demo - Attrition_files/Demo - Attrition_19_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Aqui vemos dos picos interesantes. el mas importante es el de la derecha
+donde encontramos personas con una alta nota en la última evaluación y
+se fue de la empresa. Del lado izquierdo vemos un pico con un promedio
+de nota mas bajo. Aqui podemos separar en buenos empleados (nota
+\textgreater{} .7) y no tan buenos (nota \textless{} .7)
+
+    \subsubsection{El salario y la cantidad de años en la empresa son
+predictores de
+renuncia?}\label{el-salario-y-la-cantidad-de-auxf1os-en-la-empresa-son-predictores-de-renuncia}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{c+c1}{\PYZsh{}veamos el salario usando gráfico de barras}
+         
+         \PY{n}{sns}\PY{o}{.}\PY{n}{countplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{salary}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{data}\PY{o}{=} \PY{n}{df\PYZus{}hr} \PY{p}{,} \PY{n}{hue}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}12}]:} <matplotlib.axes.\_subplots.AxesSubplot at 0x2553390f208>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Demo - Attrition_files/Demo - Attrition_22_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    ok, aqui vemos que significativamente los empleados con sueldos bajo o
+medio renuncian mas en proporción a los empleados que mas cobran. Tiene
+sentido.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{c+c1}{\PYZsh{}veamos la cantidad de año en la empresa usando diagramas de cajas}
+         \PY{n}{sns}\PY{o}{.}\PY{n}{countplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{time\PYZus{}spend\PYZus{}company}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{data}\PY{o}{=} \PY{n}{df\PYZus{}hr} \PY{p}{,} \PY{n}{hue}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}13}]:} <matplotlib.axes.\_subplots.AxesSubplot at 0x25533735cf8>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Demo - Attrition_files/Demo - Attrition_24_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    En verde, las cantidad d elos que se fueron. Vemos que entre 3 y 6 años,
+la proporcion de personas que dejaron la empresa es alta.
+
+    \subsubsection{Veamos como se relacionan el nivel de satisfacción y la
+última
+evaluación}\label{veamos-como-se-relacionan-el-nivel-de-satisfacciuxf3n-y-la-uxfaltima-evaluaciuxf3n}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{sns}\PY{o}{.}\PY{n}{lmplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{last\PYZus{}evaluation}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{satisfaction\PYZus{}level}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{data}\PY{o}{=}\PY{n}{df\PYZus{}hr}\PY{p}{,} \PY{n}{hue}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fit\PYZus{}reg}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}14}]:} <seaborn.axisgrid.FacetGrid at 0x25533760e10>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Demo - Attrition_files/Demo - Attrition_27_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Interesante, vemos que existen 3 grupos que se fueron (en verde) con
+diferentes características en función al nivel de satisfacción - Nivel
+de satisfacción promedio .4 y última evaluación promedio .5 -\/-a priori
+no serian los relevantes a revisar - Nivel de satisfacción promedio
+\textless{} .2 y alta nota de evaluación \textgreater{} .7 -\/- Riesgo
+alto. Pueden tratarse de grandes empleados poco o nada satisfechos y con
+alto grado de conocimiento. Alerta. - Nivel de satisfacción alto
+\textgreater{} .7 y alta nota de evaluación \textgreater{} .7 -\/-
+buenos empleados y satisfechos. Quizas se fueron por mejores ofertas?
+
+    \subsection{Bien, ahora buscaremos el mejor modelo de Machine Learning
+(ML) para identificar a las probables renuncias a
+futuro}\label{bien-ahora-buscaremos-el-mejor-modelo-de-machine-learning-ml-para-identificar-a-las-probables-renuncias-a-futuro}
+
+    \subsubsection{Primero usaremos el modelo de Regresión logística para
+clasificar las personas que se pueden
+ir}\label{primero-usaremos-el-modelo-de-regresiuxf3n-loguxedstica-para-clasificar-las-personas-que-se-pueden-ir}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{c+c1}{\PYZsh{}antes de crear el modelo, pasamos a numérico la variable categórica Salario}
+         \PY{n}{map\PYZus{}salary} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{low}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{medium}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{high}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+m+mi}{2}\PY{p}{\PYZcb{}} 
+         \PY{n}{df\PYZus{}hr}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{salary}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{map\PYZus{}salary}\PY{p}{\PYZcb{}}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{o}{\PYZpc{}\PYZpc{}}\PY{k}{time}
+         from sklearn import preprocessing
+         from sklearn.linear\PYZus{}model import LogisticRegression
+         from sklearn.model\PYZus{}selection import train\PYZus{}test\PYZus{}split, KFold, cross\PYZus{}val\PYZus{}score, GridSearchCV
+         
+         X\PYZus{}lr = df\PYZus{}hr.drop([\PYZsq{}left\PYZsq{}, \PYZsq{}department\PYZsq{}], axis=1)
+         y\PYZus{}lr = df\PYZus{}hr[\PYZsq{}left\PYZsq{}]
+         X\PYZus{}lr = preprocessing.scale(X\PYZus{}lr)
+         
+         \PYZsh{}usaremos como técnica anti\PYZhy{}overfitting el método split\PYZhy{}test
+         X\PYZus{}train, X\PYZus{}test, y\PYZus{}train, y\PYZus{}test = train\PYZus{}test\PYZus{}split(X\PYZus{}lr,y\PYZus{}lr,test\PYZus{}size = 0.3, random\PYZus{}state = 0)
+         
+         model\PYZus{}lr = LogisticRegression()
+         param\PYZus{}lr = \PYZob{}\PYZsq{}C\PYZsq{} : np.linspace(1, 10, 20)\PYZcb{}
+         
+         clf\PYZus{}lr = GridSearchCV(model\PYZus{}lr, param\PYZus{}lr, cv=5, return\PYZus{}train\PYZus{}score=False)
+         
+         clf\PYZus{}lr.fit(X\PYZus{}lr, y\PYZus{}lr)
+         
+         print(\PYZsq{}La precisión promedio para Regression Logística es es: \PYZob{}\PYZcb{}\PYZsq{}.format(round(clf\PYZus{}lr.best\PYZus{}score\PYZus{}, 5)))
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+La precisión promedio para Regression Logística es es: 0.77192
+Wall time: 1.58 s
+
+    \end{Verbatim}
+
+    A Priori 77\% es una métrica de accuracy regular, pero veamos las
+valores de performance
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{c+c1}{\PYZsh{}creamos la serie con la nueva clase}
+         \PY{n}{y\PYZus{}pred} \PY{o}{=} \PY{n}{clf\PYZus{}lr}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{c+c1}{\PYZsh{}veamos la matriz de confusión, y las metricas}
+         
+         \PY{k+kn}{from} \PY{n+nn}{sklearn} \PY{k}{import} \PY{n}{metrics}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{metrics}\PY{o}{.}\PY{n}{confusion\PYZus{}matrix}\PY{p}{(}\PY{n}{y\PYZus{}test}\PY{p}{,}\PY{n}{y\PYZus{}pred}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{metrics}\PY{o}{.}\PY{n}{recall\PYZus{}score}\PY{p}{(}\PY{n}{y\PYZus{}test}\PY{p}{,}\PY{n}{y\PYZus{}pred}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{metrics}\PY{o}{.}\PY{n}{precision\PYZus{}score}\PY{p}{(}\PY{n}{y\PYZus{}test}\PY{p}{,}\PY{n}{y\PYZus{}pred}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[[3200  262]
+ [ 662  376]]
+0.362235067437
+0.58934169279
+
+    \end{Verbatim}
+
+    Mmm... si bien cerca del 80\% el modelo acierta el resultado, para el
+caso nuestro, donde nos interesa si acierta en los casos que la persona
+se va de la empresa, el porcentaje de sensitividad (recall) es muy bajo,
+solo un 36\% de las veces el modelo acierta que si realmente se fue,
+nosotros acertamos. Si bien, podriamos bajar el umbral para lograr mas
+precisión, veamos otro modelo de ML, porque la performance de este
+modelo es mala. El modelo no es robusto, y probaremos con otra técnica!
+
+    \subsubsection{Ahora veamos el potente algoritmo de clasificación SVM
+(Support Vector
+Machine)}\label{ahora-veamos-el-potente-algoritmo-de-clasificaciuxf3n-svm-support-vector-machine}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{c+c1}{\PYZsh{} Debajo usaremos cross\PYZus{}validation para evitar overfitting}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{o}{\PYZpc{}\PYZpc{}}\PY{k}{time}
+         from sklearn.svm import SVC
+         
+         X\PYZus{}svc = df\PYZus{}hr.drop([\PYZsq{}left\PYZsq{}, \PYZsq{}department\PYZsq{}], axis=1)
+         y\PYZus{}svc = df\PYZus{}hr[\PYZsq{}left\PYZsq{}]
+         
+         X\PYZus{}svc = preprocessing.scale(X\PYZus{}svc)
+         
+         \PYZsh{}ejecutamos support vector classifier con los hyperparámetros por defecto
+         model\PYZus{}svc = SVC(probability=True)
+         
+         scores = cross\PYZus{}val\PYZus{}score(model\PYZus{}svc,X\PYZus{}svc,y\PYZus{}svc,cv=10,scoring=\PYZdq{}recall\PYZdq{})
+         
+         print(\PYZsq{}El accuracy, la cantidad de aciertos es de: \PYZsq{},cross\PYZus{}val\PYZus{}score(model\PYZus{}svc,X\PYZus{}svc,y\PYZus{}svc,cv=10,scoring=\PYZdq{}accuracy\PYZdq{}).mean())
+         model\PYZus{}svc.fit(X\PYZus{}svc, y\PYZus{}svc)
+         
+         print(\PYZsq{}La media del recall \PYZhy{}sensitivity\PYZhy{} es: \PYZsq{},scores.mean()) 
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+El accuracy, la cantidad de aciertos es de:  0.964865240473
+La media del recall -sensitivity- es:  0.909265605684
+Wall time: 1min 24s
+
+    \end{Verbatim}
+
+    Aqui vemos que casi el 91\% de las veces que la persona se fue, nosotros
+predecimos lo mismo. Es un muy buen ratio para el modelo
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{La precision, la cantidad de negativos acertados es de: }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{cross\PYZus{}val\PYZus{}score}\PY{p}{(}\PY{n}{model\PYZus{}svc}\PY{p}{,}\PY{n}{X\PYZus{}svc}\PY{p}{,}\PY{n}{y\PYZus{}svc}\PY{p}{,}\PY{n}{cv}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{,}\PY{n}{scoring}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{precision}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+La precision, la cantidad de negativos acertados es de:  0.941542737242
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{model\PYZus{}selection} \PY{k}{import} \PY{n}{cross\PYZus{}val\PYZus{}predict}
+         \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{metrics} \PY{k}{import} \PY{n}{confusion\PYZus{}matrix}
+         \PY{n}{y\PYZus{}pred\PYZus{}svc} \PY{o}{=} \PY{n}{cross\PYZus{}val\PYZus{}predict}\PY{p}{(}\PY{n}{model\PYZus{}svc}\PY{p}{,}\PY{n}{X\PYZus{}svc}\PY{p}{,}\PY{n}{y\PYZus{}svc}\PY{p}{,}\PY{n}{cv}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{)}
+         \PY{n}{conf\PYZus{}mat\PYZus{}svc} \PY{o}{=} \PY{n}{confusion\PYZus{}matrix}\PY{p}{(}\PY{n}{y\PYZus{}svc}\PY{p}{,}\PY{n}{y\PYZus{}pred\PYZus{}svc}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}23}]:} \PY{n}{conf\PYZus{}mat\PYZus{}svc}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}23}]:} array([[11225,   203],
+                [  324,  3247]], dtype=int64)
+\end{Verbatim}
+            
+    Mirando la matriz de confusión, se corroboran las métricas, y se
+observan muy buenos números en relacion target-predicted.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}24}]:} \PY{n}{fpr}\PY{p}{,} \PY{n}{tpr}\PY{p}{,} \PY{n}{thresholds} \PY{o}{=} \PY{n}{metrics}\PY{o}{.}\PY{n}{roc\PYZus{}curve}\PY{p}{(}\PY{n}{y\PYZus{}svc}\PY{p}{,}\PY{n}{y\PYZus{}pred\PYZus{}svc}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}25}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{fpr}\PY{p}{,}\PY{n}{tpr}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlim}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{0.0}\PY{p}{,}\PY{l+m+mf}{1.0}\PY{p}{]}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylim}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{0.0}\PY{p}{,}\PY{l+m+mf}{1.0}\PY{p}{]}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ROC curva}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{False positive rate}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{True positive rate. Sensitividad}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}25}]:} Text(0,0.5,'True positive rate. Sensitividad')
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Demo - Attrition_files/Demo - Attrition_46_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    La curva ROC tiene muy buena performance, como se ve en la imagen. Alto
+grado de aciertos en true positives, y pocos false positives.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}26}]:} \PY{c+c1}{\PYZsh{}Abajo podemos confirmarlo con el área cubierta bajo la curva.}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ROC AUC: }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{cross\PYZus{}val\PYZus{}score}\PY{p}{(}\PY{n}{model\PYZus{}svc}\PY{p}{,}\PY{n}{X\PYZus{}svc}\PY{p}{,}\PY{n}{y\PYZus{}svc}\PY{p}{,}\PY{n}{cv}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{,}\PY{n}{scoring}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{roc\PYZus{}auc}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+ROC AUC:  0.977411390032
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}27}]:} \PY{c+c1}{\PYZsh{}veamos las probabilidades de salida}
+         \PY{n}{y\PYZus{}pred\PYZus{}svc\PYZus{}proba} \PY{o}{=} \PY{n}{model\PYZus{}svc}\PY{o}{.}\PY{n}{predict\PYZus{}proba}\PY{p}{(}\PY{n}{X\PYZus{}svc}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}28}]:} \PY{n}{predicted\PYZus{}values\PYZus{}svc} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{Series}\PY{p}{(}\PY{n}{model\PYZus{}svc}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{X\PYZus{}svc}\PY{p}{)}\PY{p}{,} \PY{n}{index}\PY{o}{=}\PY{n}{y\PYZus{}svc}\PY{o}{.}\PY{n}{index}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}29}]:} \PY{n}{proba\PYZus{}values\PYZus{}svc} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{Series}\PY{p}{(}\PY{n}{model\PYZus{}svc}\PY{o}{.}\PY{n}{predict\PYZus{}proba}\PY{p}{(}\PY{n}{X\PYZus{}svc}\PY{p}{)}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{index}\PY{o}{=}\PY{n}{y\PYZus{}svc}\PY{o}{.}\PY{n}{index}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}30}]:} \PY{c+c1}{\PYZsh{}agrupamos en un vector los empleados que permanecen en la empresa con riesgo de irse}
+         \PY{n}{empleados\PYZus{}con\PYZus{}riesgo} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{k}{for} \PY{n}{index} \PY{o+ow}{in} \PY{n}{y\PYZus{}svc}\PY{o}{.}\PY{n}{index}\PY{p}{:}
+             \PY{k}{if} \PY{p}{(}\PY{n}{predicted\PYZus{}values\PYZus{}svc}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{index}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{)} \PY{o+ow}{and} \PY{p}{(}\PY{n}{y\PYZus{}svc}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{index}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{empleados\PYZus{}con\PYZus{}riesgo}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{index}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}31}]:} \PY{n}{df\PYZus{}empleados\PYZus{}con\PYZus{}riesgo} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{index}\PY{o}{=}\PY{n}{empleados\PYZus{}con\PYZus{}riesgo}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}32}]:} \PY{n}{df\PYZus{}empleados\PYZus{}con\PYZus{}riesgo}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{prob\PYZus{}renuncia}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{proba\PYZus{}values\PYZus{}svc}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}33}]:} \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Los ids de los empleados con riesgo de irse son: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{ .}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{empleados\PYZus{}con\PYZus{}riesgo}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Los ids de los empleados con riesgo de irse son: [2011, 2094, 2206, 2214, 2410, 2415, 2421, 2475, 2498, 2550, 2570, 2703, 2723, 2801, 2842, 3038, 3056, 3079, 3106, 3114, 3160, 3326, 3345, 3518, 3710, 3780, 3890, 3921, 3989, 4076, 4240, 4392, 4455, 4519, 4534, 4621, 4673, 4774, 4783, 4830, 4837, 4843, 4879, 4892, 4932, 4982, 5072, 5104, 5149, 5151, 5180, 5270, 5356, 5431, 5436, 5565, 5762, 5840, 5847, 5944, 5949, 5994, 6012, 6055, 6056, 6076, 6086, 6189, 6228, 6263, 6290, 6319, 6358, 6448, 6457, 6466, 6472, 6497, 6644, 6726, 6728, 6811, 6826, 6854, 6896, 6928, 7004, 7006, 7077, 7135, 7223, 7241, 7244, 7251, 7313, 7323, 7355, 7384, 7430, 7443, 7560, 7727, 7732, 7745, 7762, 7782, 7805, 7818, 7918, 7983, 7989, 8010, 8022, 8128, 8157, 8193, 8257, 8270, 8301, 8335, 8394, 8416, 8451, 8489, 8522, 8553, 8591, 8682, 8741, 8891, 8895, 9059, 9171, 9175, 9220, 9227, 9388, 9481, 9487, 9515, 9582, 9689, 9729, 9776, 9781, 9824, 9828, 9842, 9881, 9913, 10055, 10098, 10100, 10140, 10159, 10223, 10237, 10294, 10438, 10501, 10546, 10671, 10756, 10790, 10972, 11005, 11012, 11084, 11120, 11153, 11300, 11363, 11877, 11961, 11980, 12882, 12967, 13001, 13183, 13216, 13223, 13295, 13331, 13364, 13511, 13574, 14088, 14172, 14191] .
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}34}]:} \PY{n}{df\PYZus{}hr\PYZus{}empleados\PYZus{}con\PYZus{}riesgo} \PY{o}{=} \PY{n}{df\PYZus{}hr}\PY{p}{[}\PY{n}{df\PYZus{}hr}\PY{o}{.}\PY{n}{index}\PY{o}{.}\PY{n}{isin}\PY{p}{(}\PY{n}{empleados\PYZus{}con\PYZus{}riesgo}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}35}]:} \PY{n}{df\PYZus{}hr\PYZus{}empleados\PYZus{}con\PYZus{}riesgo}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{prob\PYZus{}renuncia}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{df\PYZus{}empleados\PYZus{}con\PYZus{}riesgo}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{prob\PYZus{}renuncia}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+C:\textbackslash{}ProgramData\textbackslash{}Anaconda3\textbackslash{}lib\textbackslash{}site-packages\textbackslash{}ipykernel\_launcher.py:1: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row\_indexer,col\_indexer] = value instead
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html\#indexing-view-versus-copy
+  """Entry point for launching an IPython kernel.
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}36}]:} \PY{n}{df\PYZus{}hr\PYZus{}empleados\PYZus{}con\PYZus{}riesgo} \PY{o}{=} \PY{n}{df\PYZus{}hr\PYZus{}empleados\PYZus{}con\PYZus{}riesgo}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{]} \PY{o}{+} \PY{n}{df\PYZus{}hr\PYZus{}empleados\PYZus{}con\PYZus{}riesgo}\PY{p}{[}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}37}]:} \PY{n}{df\PYZus{}hr\PYZus{}empleados\PYZus{}con\PYZus{}riesgo}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}37}]:}        satisfaction\_level  last\_evaluation  number\_project  \textbackslash{}
+         2011                  NaN              NaN             NaN   
+         2094                  NaN              NaN             NaN   
+         2206                  NaN              NaN             NaN   
+         2214                  NaN              NaN             NaN   
+         2410                  NaN              NaN             NaN   
+         2415                  NaN              NaN             NaN   
+         2421                  NaN              NaN             NaN   
+         2475                  NaN              NaN             NaN   
+         2498                  NaN              NaN             NaN   
+         2550                  NaN              NaN             NaN   
+         2570                  NaN              NaN             NaN   
+         2703                  NaN              NaN             NaN   
+         2723                  NaN              NaN             NaN   
+         2801                  NaN              NaN             NaN   
+         2842                  NaN              NaN             NaN   
+         3038                  NaN              NaN             NaN   
+         3056                  NaN              NaN             NaN   
+         3079                  NaN              NaN             NaN   
+         3106                  NaN              NaN             NaN   
+         3114                  NaN              NaN             NaN   
+         3160                  NaN              NaN             NaN   
+         3326                  NaN              NaN             NaN   
+         3345                  NaN              NaN             NaN   
+         3518                  NaN              NaN             NaN   
+         3710                  NaN              NaN             NaN   
+         3780                  NaN              NaN             NaN   
+         3890                  NaN              NaN             NaN   
+         3921                  NaN              NaN             NaN   
+         3989                  NaN              NaN             NaN   
+         4076                  NaN              NaN             NaN   
+         {\ldots}                   {\ldots}              {\ldots}             {\ldots}   
+         10501                 NaN              NaN             NaN   
+         10546                 NaN              NaN             NaN   
+         10671                 NaN              NaN             NaN   
+         10756                 NaN              NaN             NaN   
+         10790                 NaN              NaN             NaN   
+         10972                 NaN              NaN             NaN   
+         11005                 NaN              NaN             NaN   
+         11012                 NaN              NaN             NaN   
+         11084                 NaN              NaN             NaN   
+         11120                 NaN              NaN             NaN   
+         11153                 NaN              NaN             NaN   
+         11300                 NaN              NaN             NaN   
+         11363                 NaN              NaN             NaN   
+         11877                 NaN              NaN             NaN   
+         11961                 NaN              NaN             NaN   
+         11980                 NaN              NaN             NaN   
+         12882                 NaN              NaN             NaN   
+         12967                 NaN              NaN             NaN   
+         13001                 NaN              NaN             NaN   
+         13183                 NaN              NaN             NaN   
+         13216                 NaN              NaN             NaN   
+         13223                 NaN              NaN             NaN   
+         13295                 NaN              NaN             NaN   
+         13331                 NaN              NaN             NaN   
+         13364                 NaN              NaN             NaN   
+         13511                 NaN              NaN             NaN   
+         13574                 NaN              NaN             NaN   
+         14088                 NaN              NaN             NaN   
+         14172                 NaN              NaN             NaN   
+         14191                 NaN              NaN             NaN   
+         
+                average\_montly\_hours  time\_spend\_company  Work\_accident  left  \textbackslash{}
+         2011                    NaN                 NaN            NaN   NaN   
+         2094                    NaN                 NaN            NaN   NaN   
+         2206                    NaN                 NaN            NaN   NaN   
+         2214                    NaN                 NaN            NaN   NaN   
+         2410                    NaN                 NaN            NaN   NaN   
+         2415                    NaN                 NaN            NaN   NaN   
+         2421                    NaN                 NaN            NaN   NaN   
+         2475                    NaN                 NaN            NaN   NaN   
+         2498                    NaN                 NaN            NaN   NaN   
+         2550                    NaN                 NaN            NaN   NaN   
+         2570                    NaN                 NaN            NaN   NaN   
+         2703                    NaN                 NaN            NaN   NaN   
+         2723                    NaN                 NaN            NaN   NaN   
+         2801                    NaN                 NaN            NaN   NaN   
+         2842                    NaN                 NaN            NaN   NaN   
+         3038                    NaN                 NaN            NaN   NaN   
+         3056                    NaN                 NaN            NaN   NaN   
+         3079                    NaN                 NaN            NaN   NaN   
+         3106                    NaN                 NaN            NaN   NaN   
+         3114                    NaN                 NaN            NaN   NaN   
+         3160                    NaN                 NaN            NaN   NaN   
+         3326                    NaN                 NaN            NaN   NaN   
+         3345                    NaN                 NaN            NaN   NaN   
+         3518                    NaN                 NaN            NaN   NaN   
+         3710                    NaN                 NaN            NaN   NaN   
+         3780                    NaN                 NaN            NaN   NaN   
+         3890                    NaN                 NaN            NaN   NaN   
+         3921                    NaN                 NaN            NaN   NaN   
+         3989                    NaN                 NaN            NaN   NaN   
+         4076                    NaN                 NaN            NaN   NaN   
+         {\ldots}                     {\ldots}                 {\ldots}            {\ldots}   {\ldots}   
+         10501                   NaN                 NaN            NaN   NaN   
+         10546                   NaN                 NaN            NaN   NaN   
+         10671                   NaN                 NaN            NaN   NaN   
+         10756                   NaN                 NaN            NaN   NaN   
+         10790                   NaN                 NaN            NaN   NaN   
+         10972                   NaN                 NaN            NaN   NaN   
+         11005                   NaN                 NaN            NaN   NaN   
+         11012                   NaN                 NaN            NaN   NaN   
+         11084                   NaN                 NaN            NaN   NaN   
+         11120                   NaN                 NaN            NaN   NaN   
+         11153                   NaN                 NaN            NaN   NaN   
+         11300                   NaN                 NaN            NaN   NaN   
+         11363                   NaN                 NaN            NaN   NaN   
+         11877                   NaN                 NaN            NaN   NaN   
+         11961                   NaN                 NaN            NaN   NaN   
+         11980                   NaN                 NaN            NaN   NaN   
+         12882                   NaN                 NaN            NaN   NaN   
+         12967                   NaN                 NaN            NaN   NaN   
+         13001                   NaN                 NaN            NaN   NaN   
+         13183                   NaN                 NaN            NaN   NaN   
+         13216                   NaN                 NaN            NaN   NaN   
+         13223                   NaN                 NaN            NaN   NaN   
+         13295                   NaN                 NaN            NaN   NaN   
+         13331                   NaN                 NaN            NaN   NaN   
+         13364                   NaN                 NaN            NaN   NaN   
+         13511                   NaN                 NaN            NaN   NaN   
+         13574                   NaN                 NaN            NaN   NaN   
+         14088                   NaN                 NaN            NaN   NaN   
+         14172                   NaN                 NaN            NaN   NaN   
+         14191                   NaN                 NaN            NaN   NaN   
+         
+                promotion\_last\_5years department  salary  prob\_renuncia  
+         2011                     NaN        NaN     NaN            NaN  
+         2094                     NaN        NaN     NaN            NaN  
+         2206                     NaN        NaN     NaN            NaN  
+         2214                     NaN        NaN     NaN            NaN  
+         2410                     NaN        NaN     NaN            NaN  
+         2415                     NaN        NaN     NaN            NaN  
+         2421                     NaN        NaN     NaN            NaN  
+         2475                     NaN        NaN     NaN            NaN  
+         2498                     NaN        NaN     NaN            NaN  
+         2550                     NaN        NaN     NaN            NaN  
+         2570                     NaN        NaN     NaN            NaN  
+         2703                     NaN        NaN     NaN            NaN  
+         2723                     NaN        NaN     NaN            NaN  
+         2801                     NaN        NaN     NaN            NaN  
+         2842                     NaN        NaN     NaN            NaN  
+         3038                     NaN        NaN     NaN            NaN  
+         3056                     NaN        NaN     NaN            NaN  
+         3079                     NaN        NaN     NaN            NaN  
+         3106                     NaN        NaN     NaN            NaN  
+         3114                     NaN        NaN     NaN            NaN  
+         3160                     NaN        NaN     NaN            NaN  
+         3326                     NaN        NaN     NaN            NaN  
+         3345                     NaN        NaN     NaN            NaN  
+         3518                     NaN        NaN     NaN            NaN  
+         3710                     NaN        NaN     NaN            NaN  
+         3780                     NaN        NaN     NaN            NaN  
+         3890                     NaN        NaN     NaN            NaN  
+         3921                     NaN        NaN     NaN            NaN  
+         3989                     NaN        NaN     NaN            NaN  
+         4076                     NaN        NaN     NaN            NaN  
+         {\ldots}                      {\ldots}        {\ldots}     {\ldots}            {\ldots}  
+         10501                    NaN        NaN     NaN            NaN  
+         10546                    NaN        NaN     NaN            NaN  
+         10671                    NaN        NaN     NaN            NaN  
+         10756                    NaN        NaN     NaN            NaN  
+         10790                    NaN        NaN     NaN            NaN  
+         10972                    NaN        NaN     NaN            NaN  
+         11005                    NaN        NaN     NaN            NaN  
+         11012                    NaN        NaN     NaN            NaN  
+         11084                    NaN        NaN     NaN            NaN  
+         11120                    NaN        NaN     NaN            NaN  
+         11153                    NaN        NaN     NaN            NaN  
+         11300                    NaN        NaN     NaN            NaN  
+         11363                    NaN        NaN     NaN            NaN  
+         11877                    NaN        NaN     NaN            NaN  
+         11961                    NaN        NaN     NaN            NaN  
+         11980                    NaN        NaN     NaN            NaN  
+         12882                    NaN        NaN     NaN            NaN  
+         12967                    NaN        NaN     NaN            NaN  
+         13001                    NaN        NaN     NaN            NaN  
+         13183                    NaN        NaN     NaN            NaN  
+         13216                    NaN        NaN     NaN            NaN  
+         13223                    NaN        NaN     NaN            NaN  
+         13295                    NaN        NaN     NaN            NaN  
+         13331                    NaN        NaN     NaN            NaN  
+         13364                    NaN        NaN     NaN            NaN  
+         13511                    NaN        NaN     NaN            NaN  
+         13574                    NaN        NaN     NaN            NaN  
+         14088                    NaN        NaN     NaN            NaN  
+         14172                    NaN        NaN     NaN            NaN  
+         14191                    NaN        NaN     NaN            NaN  
+         
+         [189 rows x 11 columns]
+\end{Verbatim}
+            
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
